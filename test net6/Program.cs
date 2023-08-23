@@ -39,7 +39,7 @@ namespace test_net6
 				//			res = ab.Item1.Solve(ab.Item2).ToArray(); // if (ColumnCount == RowCount) LU else QR...
 
 				// Seem to use same time as MathNet, but I guess it make sense.
-				res = MatrixSolver_LU.Instance.SolveEquations(t.Item1);
+				res = MatrixSolver.Instance.SolveEquations(t.Item1);
 			}
 
 

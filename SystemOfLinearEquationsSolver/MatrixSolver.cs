@@ -9,11 +9,11 @@ namespace SystemOfLinearEquationsSolver
 	/// https://jamesmccaffrey.wordpress.com/2015/03/06/inverting-a-matrix-using-c/
 	/// 
 	/// </summary>
-	public class MatrixSolver_LU : ISolver
+	public class MatrixSolver : ISolver
 	{
-		public static readonly MatrixSolver_LU Instance = new MatrixSolver_LU();
+		public static readonly MatrixSolver Instance = new MatrixSolver();
 
-		private MatrixSolver_LU()
+		private MatrixSolver()
 		{
 
 		}

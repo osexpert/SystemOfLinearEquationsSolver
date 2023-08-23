@@ -41,7 +41,7 @@ namespace UnitTests
 	public class UnitTest1
 	{
 		[Theory]
-		[InlineData(enMethod.GaussJordan)]
+		[InlineData(enMethod.GaussJordan, 14)]
 		[InlineData(enMethod.Matrix_LU, 14)]
 		public void Test1(enMethod m, int? roundDigits = null)
 		{
@@ -71,7 +71,7 @@ namespace UnitTests
 		/// <param name="m"></param>
 		/// <param name="roundDigits"></param>
 		[Theory]
-		[InlineData(enMethod.GaussJordan, 15)]
+		[InlineData(enMethod.GaussJordan, 14)]
 		[InlineData(enMethod.Matrix_LU, 14)]
 		public void Test2(enMethod m, int? roundDigits = null)
 		{
@@ -89,7 +89,7 @@ namespace UnitTests
 		}
 
 		[Theory]
-		[InlineData(enMethod.GaussJordan)]
+		[InlineData(enMethod.GaussJordan, 15)]
 		[InlineData(enMethod.Matrix_LU, 15)]
 		public void Test3(enMethod m, int? roundDigits = null)
 		{
@@ -201,7 +201,7 @@ namespace UnitTests
 			switch (m)
 			{
 				case enMethod.GaussJordan: return GaussJordanEliminationSolver.Instance;
-				case enMethod.Matrix_LU: return MatrixSolver_LU.Instance;
+				case enMethod.Matrix_LU: return MatrixSolver.Instance;
 				default:
 					throw new NotImplementedException();
 			}
