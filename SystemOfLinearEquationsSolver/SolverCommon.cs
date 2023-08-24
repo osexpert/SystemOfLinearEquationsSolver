@@ -89,6 +89,23 @@ namespace SystemOfLinearEquationsSolver
 			return deviations;
 		}
 
+		public static double[][] GetMultiFromJaggedCopy(double[,] arr, bool negate_b_matrix = false)
+		{
+			var dim1len = arr.GetLength(1);
+			double[][] res = new double[arr.GetLength(0)][];
+			for (int i = 0; i < res.Length; i++)
+			{
+				res[i] = new double[dim1len];
+				for (int j = 0; j < dim1len; j++)
+				{
+					res[i][j] = arr[i, j];
+					if (negate_b_matrix && j == dim1len - 1)
+						res[i][j] = -res[i][j];
+				}
+			}
+			return res;
+		}
+
 	}
 
 	public interface ISolver

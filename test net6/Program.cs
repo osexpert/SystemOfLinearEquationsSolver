@@ -20,7 +20,8 @@ namespace test_net6
 			var s = Stopwatch.StartNew();
 
 			//10 sec on 1000 unk. same with 3unk.
-			//var res = GaussJordanEliminationSolver.Instance.SolveEquations(t.Item1);
+			//Update: 7sec now that changed from jagged [,] to multi[][] (faster swap row)
+			//			var res = GaussJordanEliminationSolver.Instance.SolveEquations(t.Item1);
 
 			//2.5 sec on 1000 unk.
 			//3sec with 2unk per row
@@ -28,10 +29,10 @@ namespace test_net6
 
 			// 110ms for 1000 unk... KE??? Yes, when row1 only has 1 unk it can solve it fast...happy path optimization.
 			// 22sek, with 2 unk per row. It could have failed over to matrix for complex solutons (it does, but it is slow and recursive)
-			//						var sol = new ClassicSolver(GetMultiFromJagged(t.Item1));
+			//						var sol = new ClassicSolver(GetMultiFromJagged(t.Item1), true);
 			//				var res = sol.SolveEquation();
 
-			// approx 65ms
+			// approx 10ms!
 			var res = SubstitutionSolver.SolveHappyPathOrFailFast(t.Item1);
 			if (res == null)
 			{
@@ -93,21 +94,6 @@ namespace test_net6
 			return (m1, vectorB);
 		}
 
-		private static double[][] GetMultiFromJagged(double[,] arr)
-		{
-			var dim1len = arr.GetLength(1);
-			double[][] res = new double[arr.GetLength(0)][];
-			for (int i = 0; i < res.Length; i++)
-			{
-				res[i] = new double[dim1len];
-				for (int j = 0; j < dim1len; j++)
-				{
-					res[i][j] = arr[i, j];
-					if (j == dim1len - 1)
-						res[i][j] = -res[i][j];
-				}
-			}
-			return res;
-		}
+	
 	}
 }
